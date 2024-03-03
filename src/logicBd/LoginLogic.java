@@ -18,39 +18,37 @@ import java.util.logging.Logger;
  * @author USUARIO
  */
 public class LoginLogic {
-    
-    public Boolean verifyCredentials(String userText, String passWordText){
-    ArrayList<UserData> credentials = getCredentials();
-    
-    for (UserData userProfile : credentials) {
-        if (userProfile.getDocument().equals(userText) && userProfile.getPassword().equals(passWordText) && userProfile.getRole().equals("admin")) {
-            return true;
-        }
-    }
-    
-    return false;
-}
 
-    
-private ArrayList<UserData> getCredentials() {
-    ArrayList<UserData> listUsers = new ArrayList<>();
+    public LoginResult verifyCredentials(String userText, String passWordText) {
+        ArrayList<UserData> credentials = getCredentials();
 
-    try (Connection connection = ConnectionDB.getConnectionBD();
-            PreparedStatement query = connection.prepareStatement("SELECT document_number, password_user,role_user FROM user_data");
-            ResultSet result = query.executeQuery()) {   
-
-        while (result.next()) {
-            UserData objUsers = new UserData();
-            objUsers.setDocument(result.getString("document_number"));
-            objUsers.setPassword(result.getString("password_user"));
-            objUsers.setRole(result.getString("role_user"));
-            listUsers.add(objUsers);
+        for (UserData userProfile : credentials) {
+            if (userProfile.getDocument().equals(userText) && userProfile.getPassword().equals(passWordText) && userProfile.getRole().equals("admin")) {
+                return new LoginResult(true, userProfile.getId()); // Devuelve el resultado de la verificación junto con el ID del usuario
+            }
         }
 
-    } catch (SQLException ex) {
-        Logger.getLogger(LoginLogic.class.getName()).log(Level.SEVERE, null, ex);
+        return new LoginResult(false, -1l);
     }
 
-    return listUsers;
- }
+    private ArrayList<UserData> getCredentials() {
+        ArrayList<UserData> listUsers = new ArrayList<>();
+
+        try (Connection connection = ConnectionDB.getConnectionBD(); PreparedStatement query = connection.prepareStatement("SELECT id_user, document_number, password_user, role_user FROM user_data"); ResultSet result = query.executeQuery()) {
+
+            while (result.next()) {
+                UserData objUsers = new UserData();
+                objUsers.setId(result.getLong("id_user"));
+                objUsers.setDocument(result.getString("document_number"));
+                objUsers.setPassword(result.getString("password_user"));
+                objUsers.setRole(result.getString("role_user"));
+                listUsers.add(objUsers);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginLogic.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return listUsers;
+    }
 }

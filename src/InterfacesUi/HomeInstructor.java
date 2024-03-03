@@ -1,32 +1,33 @@
 package InterfacesUi;
 
-
 import com.formdev.flatlaf.FlatIntelliJLaf;
-import com.formdev.flatlaf.FlatLightLaf;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import javax.swing.Timer;
-
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+import entities.UserData;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import logicBd.HomeInstructorLogic;
 
 /**
  *
- * @author USUARIO
+ * @author Oscar
  */
 public class HomeInstructor extends javax.swing.JFrame {
-
-    /**
-     * Creates new form HomeInstructor
-     */
-    public HomeInstructor() {
-        initComponents();
-        
-        FlatIntelliJLaf.setup();
-    }
     
+    private Long userId;
+    
+    public HomeInstructor(Long userId) {
+        initComponents();
+        FlatIntelliJLaf.setup();
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.userId = userId;   
+        
+        developing();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,20 +38,20 @@ public class HomeInstructor extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btExit = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         panelRound5 = new InterfacesUi.PanelRound();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelProfilePicture = new javax.swing.JLabel();
+        labelNameUser = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         panelRound4 = new InterfacesUi.PanelRound();
         panelRound1 = new InterfacesUi.PanelRound();
         jLabel1 = new javax.swing.JLabel();
         panelRound2 = new InterfacesUi.PanelRound();
-        jButton2 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        btEvents = new javax.swing.JButton();
+        btCourses = new javax.swing.JButton();
+        btAssists = new javax.swing.JButton();
         panelRound3 = new InterfacesUi.PanelRound();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,12 +59,12 @@ public class HomeInstructor extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(111, 168, 220));
         jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
 
-        jButton1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
-        jButton1.setText(" Exit");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btExit.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        btExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
+        btExit.setText(" Exit");
+        btExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btExitActionPerformed(evt);
             }
         });
 
@@ -81,10 +82,10 @@ public class HomeInstructor extends javax.swing.JFrame {
         panelRound5.setRoundTopLeft(15);
         panelRound5.setRoundTopRight(15);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profileImg.png"))); // NOI18N
+        labelProfilePicture.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profileImg.png"))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
-        jLabel3.setText("Miguel Angel");
+        labelNameUser.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
+        labelNameUser.setText("User Basic");
 
         javax.swing.GroupLayout panelRound5Layout = new javax.swing.GroupLayout(panelRound5);
         panelRound5.setLayout(panelRound5Layout);
@@ -92,20 +93,20 @@ public class HomeInstructor extends javax.swing.JFrame {
             panelRound5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound5Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addComponent(jLabel2)
+                .addComponent(labelProfilePicture)
                 .addGap(38, 38, 38)
-                .addComponent(jLabel3)
+                .addComponent(labelNameUser)
                 .addContainerGap(50, Short.MAX_VALUE))
         );
         panelRound5Layout.setVerticalGroup(
             panelRound5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addComponent(labelProfilePicture)
                 .addGap(29, 29, 29))
             .addGroup(panelRound5Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jLabel3)
+                .addComponent(labelNameUser)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -116,12 +117,12 @@ public class HomeInstructor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(126, 126, 126)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 758, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 780, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(59, 59, 59)
                 .addComponent(panelRound5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34))
         );
         jPanel1Layout.setVerticalGroup(
@@ -140,7 +141,7 @@ public class HomeInstructor extends javax.swing.JFrame {
                         .addComponent(jLabel5))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
@@ -155,18 +156,23 @@ public class HomeInstructor extends javax.swing.JFrame {
 
         panelRound2.setBackground(new java.awt.Color(174, 214, 241));
 
-        jButton2.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/event.png"))); // NOI18N
-        jButton2.setText("  Events");
-        jButton2.setToolTipText("hentai hardcore furry femboy");
+        btEvents.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
+        btEvents.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/event.png"))); // NOI18N
+        btEvents.setText("  Events");
+        btEvents.setToolTipText("hentai hardcore furry femboy");
+        btEvents.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btEventsActionPerformed(evt);
+            }
+        });
 
-        jButton5.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/courses.png"))); // NOI18N
-        jButton5.setText("  Courses");
+        btCourses.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
+        btCourses.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/courses.png"))); // NOI18N
+        btCourses.setText("  Courses");
 
-        jButton6.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/assist.png"))); // NOI18N
-        jButton6.setText("  Assists");
+        btAssists.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
+        btAssists.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/assist.png"))); // NOI18N
+        btAssists.setText("  Assists");
 
         javax.swing.GroupLayout panelRound2Layout = new javax.swing.GroupLayout(panelRound2);
         panelRound2.setLayout(panelRound2Layout);
@@ -175,19 +181,19 @@ public class HomeInstructor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound2Layout.createSequentialGroup()
                 .addGap(0, 12, Short.MAX_VALUE)
                 .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(btEvents, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btCourses, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btAssists, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         panelRound2Layout.setVerticalGroup(
             panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound2Layout.createSequentialGroup()
                 .addGap(0, 38, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btEvents, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btAssists, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btCourses, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         panelRound3.setPreferredSize(new java.awt.Dimension(100, 5));
@@ -271,25 +277,73 @@ public class HomeInstructor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    public void developing() {
+        HomeInstructorLogic homeInstructorLogic = new HomeInstructorLogic();
+        
+        ArrayList<UserData> infoUser = homeInstructorLogic.getUserData(userId);
+        
+        if (!infoUser.isEmpty()) {
+            UserData userData = infoUser.get(0); // Suponiendo que solo hay un usuario
 
-   
-   
+            // Mostrar nombre de usuario
+            labelNameUser.setText(userData.getNameUser());
+
+            // Cargar y mostrar imagen de perfil
+            ImageIcon profileImageIcon;
+            if (userData.getProfilePicture() != null) {
+                try {
+                    URL imageURL = new URL(userData.getProfilePicture());
+                    BufferedImage image = ImageIO.read(imageURL);
+                    if (image != null) {
+                        // Redimensionar la imagen al tamaño deseado (32x32)
+                        java.awt.Image scaledImage = image.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
+                        profileImageIcon = new ImageIcon(scaledImage);
+                    } else {
+               
+                        // Si la imagen no se pudo cargar, utilizar una predeterminada
+                        profileImageIcon = new ImageIcon(getClass().getResource("/images/profileImg.png"));
+                    }
+                } catch (IOException e) {
+                    // Error al cargar la imagen desde la URL, utilizar una predeterminada
+                    profileImageIcon = new ImageIcon(getClass().getResource("/images/profileImg.png"));
+                }
+            } else {
+                // Si no hay imagen de perfil, utilizar una predeterminada
+                profileImageIcon = new ImageIcon(getClass().getResource("/images/profileImg.png"));
+            }
+            labelProfilePicture.setIcon(profileImageIcon);
+        
+      
+    }
+
+    }
+    
+
+    private void btExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btExitActionPerformed
+
+
+    private void btEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEventsActionPerformed
+
+        EventForm eventForm = new EventForm();
+        eventForm.setVisible(true);
+
+    }//GEN-LAST:event_btEventsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton btAssists;
+    private javax.swing.JButton btCourses;
+    private javax.swing.JButton btEvents;
+    private javax.swing.JButton btExit;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelNameUser;
+    private javax.swing.JLabel labelProfilePicture;
     private InterfacesUi.PanelRound panelRound1;
     private InterfacesUi.PanelRound panelRound2;
     private InterfacesUi.PanelRound panelRound3;

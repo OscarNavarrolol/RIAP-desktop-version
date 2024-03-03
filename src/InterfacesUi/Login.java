@@ -7,6 +7,7 @@ import java.awt.Desktop;
 import java.net.URI;
 import javax.swing.JOptionPane;
 import logicBd.LoginLogic;
+import logicBd.LoginResult;
 
 /**
  *
@@ -33,7 +34,7 @@ public class Login extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btLogin = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btForgotPassword = new javax.swing.JButton();
         txtUser = new javax.swing.JTextField();
         jpasswordUser = new javax.swing.JPasswordField();
 
@@ -98,12 +99,12 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setForeground(new java.awt.Color(0, 0, 255));
-        jButton2.setText("Forgot your password?");
-        jButton2.setBorder(null);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btForgotPassword.setForeground(new java.awt.Color(0, 0, 255));
+        btForgotPassword.setText("Forgot your password?");
+        btForgotPassword.setBorder(null);
+        btForgotPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btForgotPasswordActionPerformed(evt);
             }
         });
 
@@ -161,7 +162,7 @@ public class Login extends javax.swing.JFrame {
                                 .addComponent(jLabel4)
                                 .addGap(145, 145, 145))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btForgotPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(67, 67, 67))))))
         );
         layout.setVerticalGroup(
@@ -181,7 +182,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(btLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btForgotPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
         );
 
@@ -218,24 +219,32 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jpasswordUserFocusLost
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
-        String userText = txtUser.getText();
-        String passWordText = jpasswordUser.getText();
+         String userText = txtUser.getText();
+    String passWordText = jpasswordUser.getText();
 
-        LoginLogic logic = new LoginLogic();
-        HomeInstructor homeInstructor = new HomeInstructor();
+    LoginLogic logic = new LoginLogic();
 
-        Boolean credentialsReview = logic.verifyCredentials(userText, passWordText);
-        if (credentialsReview == true) {
-            JOptionPane.showMessageDialog(null, "Welcome dear user!", "Hello", JOptionPane.INFORMATION_MESSAGE);
-            homeInstructor.setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Incorrect credentials.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    // Verificar las credenciales y obtener el resultado
+    LoginResult result = logic.verifyCredentials(userText, passWordText);
+
+    // Verificar el resultado
+    if (result.isSuccess()) {
+        JOptionPane.showMessageDialog(null, "Welcome dear user!", "Hello", JOptionPane.INFORMATION_MESSAGE);
+        
+        // Obtener el ID del usuario desde el resultado
+        Long userId = result.getUserId();
+        
+        // Abrir la ventana HomeInstructor con el ID del usuario
+        HomeInstructor homeInstructor = new HomeInstructor(userId);
+        homeInstructor.setVisible(true);
+        this.dispose();
+    } else {
+        JOptionPane.showMessageDialog(null, "Incorrect credentials.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
 
     }//GEN-LAST:event_btLoginActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btForgotPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btForgotPasswordActionPerformed
         try {
 
             URI uri = new URI("https://sena.territorio.la/cms/index.php");
@@ -246,7 +255,7 @@ public class Login extends javax.swing.JFrame {
             e.printStackTrace();
         }
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btForgotPasswordActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -266,8 +275,8 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btForgotPassword;
     private javax.swing.JButton btLogin;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
