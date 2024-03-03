@@ -224,17 +224,13 @@ public class Login extends javax.swing.JFrame {
 
     LoginLogic logic = new LoginLogic();
 
-    // Verificar las credenciales y obtener el resultado
     LoginResult result = logic.verifyCredentials(userText, passWordText);
 
-    // Verificar el resultado
     if (result.isSuccess()) {
         JOptionPane.showMessageDialog(null, "Welcome dear user!", "Hello", JOptionPane.INFORMATION_MESSAGE);
         
-        // Obtener el ID del usuario desde el resultado
         Long userId = result.getUserId();
         
-        // Abrir la ventana HomeInstructor con el ID del usuario
         HomeInstructor homeInstructor = new HomeInstructor(userId);
         homeInstructor.setVisible(true);
         this.dispose();

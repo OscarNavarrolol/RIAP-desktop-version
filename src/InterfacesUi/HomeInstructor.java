@@ -15,16 +15,16 @@ import logicBd.HomeInstructorLogic;
  * @author Oscar
  */
 public class HomeInstructor extends javax.swing.JFrame {
-    
+
     private Long userId;
-    
+
     public HomeInstructor(Long userId) {
         initComponents();
         FlatIntelliJLaf.setup();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.userId = userId;   
-        
+        this.userId = userId;
+
         developing();
     }
 
@@ -279,45 +279,42 @@ public class HomeInstructor extends javax.swing.JFrame {
 
     public void developing() {
         HomeInstructorLogic homeInstructorLogic = new HomeInstructorLogic();
-        
-        ArrayList<UserData> infoUser = homeInstructorLogic.getUserData(userId);
-        
-        if (!infoUser.isEmpty()) {
-            UserData userData = infoUser.get(0); // Suponiendo que solo hay un usuario
 
-            // Mostrar nombre de usuario
+        ArrayList<UserData> infoUser = homeInstructorLogic.getUserData(userId);
+
+        if (!infoUser.isEmpty()) {
+            UserData userData = infoUser.get(0);
+
             labelNameUser.setText(userData.getNameUser());
 
-            // Cargar y mostrar imagen de perfil
             ImageIcon profileImageIcon;
             if (userData.getProfilePicture() != null) {
                 try {
                     URL imageURL = new URL(userData.getProfilePicture());
                     BufferedImage image = ImageIO.read(imageURL);
                     if (image != null) {
-                        // Redimensionar la imagen al tamaño deseado (32x32)
+                        // tamaño(32x32)
                         java.awt.Image scaledImage = image.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
                         profileImageIcon = new ImageIcon(scaledImage);
                     } else {
-               
-                        // Si la imagen no se pudo cargar, utilizar una predeterminada
+
+                        // predeterminada
                         profileImageIcon = new ImageIcon(getClass().getResource("/images/profileImg.png"));
                     }
                 } catch (IOException e) {
-                    // Error al cargar la imagen desde la URL, utilizar una predeterminada
+                    // predeterminada
                     profileImageIcon = new ImageIcon(getClass().getResource("/images/profileImg.png"));
                 }
             } else {
-                // Si no hay imagen de perfil, utilizar una predeterminada
+                // predeterminada
                 profileImageIcon = new ImageIcon(getClass().getResource("/images/profileImg.png"));
             }
             labelProfilePicture.setIcon(profileImageIcon);
-        
-      
-    }
+
+        }
 
     }
-    
+
 
     private void btExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExitActionPerformed
         System.exit(0);

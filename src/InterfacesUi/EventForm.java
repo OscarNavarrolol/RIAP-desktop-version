@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author USUARIO
+ * @author Oscar
  */
 public class EventForm extends javax.swing.JFrame {
 
