@@ -23,9 +23,8 @@ public class HomeInstructor extends javax.swing.JFrame {
      */
     public HomeInstructor() {
         initComponents();
-        updateTime();
-        Timer timer = new Timer(1000, e -> updateTime());
-        timer.start();
+        
+        FlatIntelliJLaf.setup();
     }
     
     /**
@@ -53,8 +52,6 @@ public class HomeInstructor extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         panelRound3 = new InterfacesUi.PanelRound();
-        panelRound6 = new InterfacesUi.PanelRound();
-        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,10 +76,10 @@ public class HomeInstructor extends javax.swing.JFrame {
         panelRound5.setBackground(new java.awt.Color(111, 168, 220));
         panelRound5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
         panelRound5.setForeground(new java.awt.Color(255, 255, 255));
-        panelRound5.setRoundBottomLeft(5);
-        panelRound5.setRoundBottomRight(5);
-        panelRound5.setRoundTopLeft(5);
-        panelRound5.setRoundTopRight(5);
+        panelRound5.setRoundBottomLeft(15);
+        panelRound5.setRoundBottomRight(15);
+        panelRound5.setRoundTopLeft(15);
+        panelRound5.setRoundTopRight(15);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/profileImg.png"))); // NOI18N
 
@@ -119,13 +116,13 @@ public class HomeInstructor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(126, 126, 126)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 750, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 758, Short.MAX_VALUE)
                 .addComponent(jLabel5)
                 .addGap(59, 59, 59)
                 .addComponent(panelRound5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addGap(50, 50, 50)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
+                .addGap(34, 34, 34))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,12 +137,11 @@ public class HomeInstructor extends javax.swing.JFrame {
                             .addComponent(panelRound5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(51, 51, 51)
-                        .addComponent(jLabel5)))
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(31, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
         );
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/imageCentral.png"))); // NOI18N
@@ -162,6 +158,7 @@ public class HomeInstructor extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/event.png"))); // NOI18N
         jButton2.setText("  Events");
+        jButton2.setToolTipText("hentai hardcore furry femboy");
 
         jButton5.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/courses.png"))); // NOI18N
@@ -218,16 +215,16 @@ public class HomeInstructor extends javax.swing.JFrame {
                             .addComponent(panelRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(panelRound3, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelRound1Layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
+                        .addGap(157, 157, 157)
                         .addComponent(jLabel1)))
                 .addContainerGap(63, Short.MAX_VALUE))
         );
         panelRound1Layout.setVerticalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelRound1Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
+                .addGap(78, 78, 78)
                 .addComponent(jLabel1)
-                .addGap(70, 70, 70)
+                .addGap(60, 60, 60)
                 .addComponent(panelRound2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 157, Short.MAX_VALUE)
                 .addComponent(panelRound3, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,31 +244,6 @@ public class HomeInstructor extends javax.swing.JFrame {
             .addComponent(panelRound1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        panelRound6.setBackground(new java.awt.Color(204, 204, 204));
-        panelRound6.setRoundBottomLeft(100);
-        panelRound6.setRoundBottomRight(100);
-        panelRound6.setRoundTopLeft(100);
-        panelRound6.setRoundTopRight(100);
-
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/signo-de-pregunta.png"))); // NOI18N
-
-        javax.swing.GroupLayout panelRound6Layout = new javax.swing.GroupLayout(panelRound6);
-        panelRound6.setLayout(panelRound6Layout);
-        panelRound6Layout.setHorizontalGroup(
-            panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound6Layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addGap(15, 15, 15))
-        );
-        panelRound6Layout.setVerticalGroup(
-            panelRound6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound6Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(jLabel6)
-                .addGap(14, 14, 14))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -279,29 +251,21 @@ public class HomeInstructor extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelRound4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 316, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
-                .addGap(205, 205, 205)
-                .addComponent(panelRound6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
+                .addGap(301, 301, 301))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(panelRound4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel7)
-                                .addGap(108, 108, 108))))
+                    .addComponent(panelRound4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(panelRound6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(53, 53, 53))))
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addGap(92, 92, 92))))
         );
 
         pack();
@@ -310,31 +274,8 @@ public class HomeInstructor extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-    
-    public void updateTime() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-        String formattedDate = dateFormat.format(new Date());
-       // labelHora.setText(formattedDate);
-    }
-    /**
-     * @param args the command line arguments
-     */
-     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        FlatIntelliJLaf.setup();
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new HomeInstructor().setVisible(true);
-            }
-        });
-    }
+   
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -347,7 +288,6 @@ public class HomeInstructor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private InterfacesUi.PanelRound panelRound1;
@@ -355,6 +295,5 @@ public class HomeInstructor extends javax.swing.JFrame {
     private InterfacesUi.PanelRound panelRound3;
     private InterfacesUi.PanelRound panelRound4;
     private InterfacesUi.PanelRound panelRound5;
-    private InterfacesUi.PanelRound panelRound6;
     // End of variables declaration//GEN-END:variables
 }

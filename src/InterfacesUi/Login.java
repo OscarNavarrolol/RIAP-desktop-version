@@ -1,17 +1,12 @@
 package InterfacesUi;
 
-
 import com.formdev.flatlaf.FlatDarculaLaf;
 import com.formdev.flatlaf.*;
 import java.awt.Color;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.*;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.awt.Desktop;
+import java.net.URI;
 import javax.swing.JOptionPane;
+import logicBd.LoginLogic;
 
 /**
  *
@@ -19,26 +14,13 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
 
-    
     public Login() {
         initComponents();
-        /*
-        ConnectionDB.getConnectionBD();
-        ArrayList<Usuario> listaUsuarios = ArrayObjPassword();
-        */
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-//        for (Usuario user : listaUsuarios){
-//            System.out.println("ID: " + user.getId());
-//            System.out.println("Username: " + user.getUsername());
-//            System.out.println("Password: " + user.getPassword());
-//            System.out.println("--------------------");
-//        }
 
     }
 
-
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -50,7 +32,7 @@ public class Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btLogin = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         txtUser = new javax.swing.JTextField();
         jpasswordUser = new javax.swing.JPasswordField();
@@ -108,17 +90,22 @@ public class Login extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jLabel6.setText("Password:");
 
-        jButton1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jButton1.setText("Log in");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btLogin.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btLogin.setText("Log in");
+        btLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btLoginActionPerformed(evt);
             }
         });
 
         jButton2.setForeground(new java.awt.Color(0, 0, 255));
-        jButton2.setText("Do you not have an account? Click here.");
+        jButton2.setText("Forgot your password?");
         jButton2.setBorder(null);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         txtUser.setForeground(new java.awt.Color(153, 153, 153));
         txtUser.setText("Username");
@@ -152,7 +139,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(156, 156, 156)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
@@ -192,7 +179,7 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jpasswordUser, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
@@ -201,51 +188,66 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+
     private void txtUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusGained
         if (txtUser.getText().equals("Username")) {
-           txtUser.setText("");
-           txtUser.setForeground(new Color(153, 153, 153));
-        } 
+            txtUser.setText("");
+            txtUser.setForeground(new Color(153, 153, 153));
+        }
     }//GEN-LAST:event_txtUserFocusGained
 
     private void jpasswordUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jpasswordUserFocusGained
         if (jpasswordUser.getText().equals("************")) {
-        jpasswordUser.setText("");
-        jpasswordUser.setForeground(new Color(153, 153, 153));
-    }
+            jpasswordUser.setText("");
+            jpasswordUser.setForeground(new Color(153, 153, 153));
+        }
     }//GEN-LAST:event_jpasswordUserFocusGained
 
     private void txtUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUserFocusLost
         if (txtUser.getText().isEmpty()) {
-        txtUser.setText("Username");
-        txtUser.setForeground(new Color(153, 153, 153));
-    }
+            txtUser.setText("Username");
+            txtUser.setForeground(new Color(153, 153, 153));
+        }
     }//GEN-LAST:event_txtUserFocusLost
 
     private void jpasswordUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jpasswordUserFocusLost
         if (jpasswordUser.getText().isEmpty()) {
-        jpasswordUser.setText("************");
-        jpasswordUser.setForeground(new Color(153, 153, 153));
-    }
+            jpasswordUser.setText("************");
+            jpasswordUser.setForeground(new Color(153, 153, 153));
+        }
     }//GEN-LAST:event_jpasswordUserFocusLost
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                
-//        app.setVisible(true);
-//        this.dispose();
-/*
-        if (validarDatos() == true) {
-            JOptionPane.showMessageDialog(this, "Bienvenido " + objUsers.getUsername());
-            app.setVisible(true);
-            this.dispose();
-        }else {
-            JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos", "Error", JOptionPane.ERROR_MESSAGE);
-            limpiar();
-        }
-*/
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
+        String userText = txtUser.getText();
+        String passWordText = jpasswordUser.getText();
 
-    
+        LoginLogic logic = new LoginLogic();
+        HomeInstructor homeInstructor = new HomeInstructor();
+
+        Boolean credentialsReview = logic.verifyCredentials(userText, passWordText);
+        if (credentialsReview == true) {
+            JOptionPane.showMessageDialog(null, "Welcome dear user!", "Hello", JOptionPane.INFORMATION_MESSAGE);
+            homeInstructor.setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Incorrect credentials.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_btLoginActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        try {
+
+            URI uri = new URI("https://sena.territorio.la/cms/index.php");
+
+            Desktop.getDesktop().browse(uri);
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -264,7 +266,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btLogin;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
