@@ -344,6 +344,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="  Courses"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCoursesActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btAssists">
                   <Properties>
@@ -355,6 +358,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="  Assists"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAssistsActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

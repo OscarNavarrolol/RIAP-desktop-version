@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import logicBd.HomeInstructorLogic;
 
 /**
@@ -25,7 +26,7 @@ public class HomeInstructor extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.userId = userId;
 
-        developing();
+        chargeInformation();
     }
 
     /**
@@ -169,10 +170,20 @@ public class HomeInstructor extends javax.swing.JFrame {
         btCourses.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
         btCourses.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/courses.png"))); // NOI18N
         btCourses.setText("  Courses");
+        btCourses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCoursesActionPerformed(evt);
+            }
+        });
 
         btAssists.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
         btAssists.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/assist.png"))); // NOI18N
         btAssists.setText("  Assists");
+        btAssists.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAssistsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelRound2Layout = new javax.swing.GroupLayout(panelRound2);
         panelRound2.setLayout(panelRound2Layout);
@@ -277,7 +288,7 @@ public class HomeInstructor extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void developing() {
+    public void chargeInformation() {
         HomeInstructorLogic homeInstructorLogic = new HomeInstructorLogic();
 
         ArrayList<UserData> infoUser = homeInstructorLogic.getUserData(userId);
@@ -298,21 +309,19 @@ public class HomeInstructor extends javax.swing.JFrame {
                         profileImageIcon = new ImageIcon(scaledImage);
                     } else {
 
-                        // predeterminada
+                        // default
                         profileImageIcon = new ImageIcon(getClass().getResource("/images/profileImg.png"));
                     }
                 } catch (IOException e) {
-                    // predeterminada
+                    // default
                     profileImageIcon = new ImageIcon(getClass().getResource("/images/profileImg.png"));
                 }
             } else {
-                // predeterminada
+                // default
                 profileImageIcon = new ImageIcon(getClass().getResource("/images/profileImg.png"));
             }
             labelProfilePicture.setIcon(profileImageIcon);
-
         }
-
     }
 
 
@@ -322,11 +331,19 @@ public class HomeInstructor extends javax.swing.JFrame {
 
 
     private void btEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEventsActionPerformed
-
-        EventForm eventForm = new EventForm();
+        this.dispose();
+        EventForm eventForm = new EventForm(this);
         eventForm.setVisible(true);
 
     }//GEN-LAST:event_btEventsActionPerformed
+
+    private void btAssistsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAssistsActionPerformed
+       JOptionPane.showMessageDialog(null, "This interface is not available at the moment.");
+    }//GEN-LAST:event_btAssistsActionPerformed
+
+    private void btCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCoursesActionPerformed
+        JOptionPane.showMessageDialog(null, "This interface is not available at the moment.");
+    }//GEN-LAST:event_btCoursesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
