@@ -21,6 +21,7 @@ public class HomeInstructor extends javax.swing.JFrame {
 
     public HomeInstructor(Long userId) {
         initComponents();
+        
         FlatIntelliJLaf.setup();
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -41,7 +42,6 @@ public class HomeInstructor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btExit = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         panelRound5 = new InterfacesUi.PanelRound();
         labelProfilePicture = new javax.swing.JLabel();
         labelNameUser = new javax.swing.JLabel();
@@ -63,6 +63,7 @@ public class HomeInstructor extends javax.swing.JFrame {
         btExit.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         btExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/exit.png"))); // NOI18N
         btExit.setText(" Exit");
+        btExit.setToolTipText("Exit the program");
         btExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExitActionPerformed(evt);
@@ -72,8 +73,6 @@ public class HomeInstructor extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Roboto", 1, 60)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("RIAP");
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/campana.png"))); // NOI18N
 
         panelRound5.setBackground(new java.awt.Color(111, 168, 220));
         panelRound5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 3));
@@ -118,9 +117,7 @@ public class HomeInstructor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(126, 126, 126)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 780, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(59, 59, 59)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(panelRound5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,9 +134,6 @@ public class HomeInstructor extends javax.swing.JFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addContainerGap()
                             .addComponent(panelRound5, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addComponent(jLabel5))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addComponent(btExit, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -160,7 +154,7 @@ public class HomeInstructor extends javax.swing.JFrame {
         btEvents.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
         btEvents.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/event.png"))); // NOI18N
         btEvents.setText("  Events");
-        btEvents.setToolTipText("hentai hardcore furry femboy");
+        btEvents.setToolTipText("Create a new event");
         btEvents.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEventsActionPerformed(evt);
@@ -170,6 +164,7 @@ public class HomeInstructor extends javax.swing.JFrame {
         btCourses.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
         btCourses.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/courses.png"))); // NOI18N
         btCourses.setText("  Courses");
+        btCourses.setToolTipText("Review the courses in charge");
         btCourses.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCoursesActionPerformed(evt);
@@ -179,6 +174,7 @@ public class HomeInstructor extends javax.swing.JFrame {
         btAssists.setFont(new java.awt.Font("Roboto", 1, 20)); // NOI18N
         btAssists.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/assist.png"))); // NOI18N
         btAssists.setText("  Assists");
+        btAssists.setToolTipText("Review attendance");
         btAssists.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btAssistsActionPerformed(evt);
@@ -268,7 +264,7 @@ public class HomeInstructor extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelRound4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 316, Short.MAX_VALUE)
                 .addComponent(jLabel7)
                 .addGap(301, 301, 301))
         );
@@ -304,7 +300,7 @@ public class HomeInstructor extends javax.swing.JFrame {
                     URL imageURL = new URL(userData.getProfilePicture());
                     BufferedImage image = ImageIO.read(imageURL);
                     if (image != null) {
-                        // tamaño(32x32)
+                        // (32x32)
                         java.awt.Image scaledImage = image.getScaledInstance(32, 32, java.awt.Image.SCALE_SMOOTH);
                         profileImageIcon = new ImageIcon(scaledImage);
                     } else {
@@ -331,6 +327,7 @@ public class HomeInstructor extends javax.swing.JFrame {
 
 
     private void btEventsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEventsActionPerformed
+        
         this.dispose();
         EventForm eventForm = new EventForm(this);
         eventForm.setVisible(true);
@@ -338,11 +335,17 @@ public class HomeInstructor extends javax.swing.JFrame {
     }//GEN-LAST:event_btEventsActionPerformed
 
     private void btAssistsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAssistsActionPerformed
-       JOptionPane.showMessageDialog(null, "This interface is not available at the moment.");
+       
+       AttendanceApprentices attendanceApprentices = new AttendanceApprentices();
+       attendanceApprentices.setVisible(true);
+       
     }//GEN-LAST:event_btAssistsActionPerformed
 
     private void btCoursesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCoursesActionPerformed
-        JOptionPane.showMessageDialog(null, "This interface is not available at the moment.");
+        
+        CoursesInformation coursesInformation = new CoursesInformation();
+        coursesInformation.setVisible(true);
+        
     }//GEN-LAST:event_btCoursesActionPerformed
 
 
@@ -353,7 +356,6 @@ public class HomeInstructor extends javax.swing.JFrame {
     private javax.swing.JButton btExit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelNameUser;

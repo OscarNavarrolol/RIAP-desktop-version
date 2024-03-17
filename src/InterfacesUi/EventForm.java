@@ -26,6 +26,8 @@ public class EventForm extends javax.swing.JFrame {
         initComponents();
         FlatIntelliJLaf.setup();
         this.homeInstructor = homeInstructor;
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
     }
     
     /**
